@@ -16,40 +16,20 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-variable "keda_helm_chart" {
-  type        = any
-  default     = {}
-  description = "Keda Event-based autoscaler for workloads on Kubernetes Helm chart config"
+output "amp_ingest_role_arn" {
+  value = var.amp_ingest_role_arn
 }
 
-variable "eks_cluster_name" {
-  type        = string
-  description = "EKS Cluster Id"
+output "amp_workspace_url" {
+  value = local.amp_workspace_url
 }
 
-variable "iam_role_path" {
-  type        = string
-  default     = "/"
-  description = "IAM role path"
+output "gitops_config" {
+  description = "Configuration needed for GitOps"
+  value = var.manage_via_gitops ? {
+    enable           = true
+    ampIngestRoleArn = var.amp_ingest_role_arn
+    ampWorkspaceUrl  = local.amp_workspace_url
+  } : null
 }
-
-variable "tags" {
-  type        = map(string)
-  description = "Common Tags for AWS resources"
-}
-
-variable "keda_create_irsa" {
-  type        = bool
-  description = "Indicates if the add-on should create a IAM role + service account"
-}
-
-variable "keda_irsa_policies" {
-  type        = list(string)
-  description = "Additional IAM policies for a IAM role for service accounts"
-}
-
-variable "manage_via_gitops" {
-  type        = bool
-  default     = false
-  description = "Determines if the add-on should be managed via GitOps."
-}
+      

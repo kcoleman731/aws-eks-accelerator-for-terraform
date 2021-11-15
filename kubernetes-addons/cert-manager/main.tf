@@ -17,6 +17,7 @@
  */
 
 resource "helm_release" "cert_manager" {
+  count                      = var.manage_via_gitops ? 0 : 1
   name                       = local.cert_manager_helm_app["name"]
   repository                 = local.cert_manager_helm_app["repository"]
   chart                      = local.cert_manager_helm_app["chart"]

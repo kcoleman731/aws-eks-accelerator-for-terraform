@@ -84,4 +84,20 @@ locals {
   service_account_amp_ingest_name = format("%s-%s", module.aws_eks.cluster_id, "amp-ingest")
   service_account_amp_query_name  = format("%s-%s", module.aws_eks.cluster_id, "amp-query")
 
+  # Indicates if add-on modules should deploy Helm charts or not. 
+  deploy_helm_chart = !var.argocd_manage_add_ons
+
+  # Configuration for managing add-ons via GitOps.
+  add_on_config = {
+    agones                    = var.agones_enable ? module.agones[0].gitops_config : null
+    awsForFluentBit           = var.aws_for_fluentbit_enable ? module.aws_for_fluent_bit[0].gitops_config : null
+    awsLoadBalancerController = var.aws_lb_ingress_controller_enable ? module.aws_load_balancer_controller[0].gitops_config : null
+    certManager               = var.cert_manager_enable ? module.cert_manager[0].gitops_config : null
+    clusterAutoscaler         = var.cluster_autoscaler_enable ? module.cluster_autoscaler[0].gitops_config : null
+    keda                      = var.keda_enable ? module.keda[0].gitops_config : null
+    metricsServer             = var.metrics_server_enable ? module.metrics_server[0].gitops_config : null
+    ingressNginx              = var.nginx_ingress_controller_enable ? module.nginx_ingress[0].gitops_config : null
+    prometheus                = var.prometheus_enable ? module.prometheus[0].gitops_config : null
+    traefik                   = var.traefik_ingress_controller_enable ? module.traefik_ingress[0].gitops_config : null
+  }
 }
