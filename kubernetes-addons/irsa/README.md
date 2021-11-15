@@ -57,6 +57,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_deploy_helm_chart"></a> [deploy\_helm\_chart](#input\_deploy\_helm\_chart) | Determines if a Helm chart should be deployed for the add-on. | `bool` | `true` | no |
 | <a name="input_eks_cluster_name"></a> [eks\_cluster\_name](#input\_eks\_cluster\_name) | EKS Cluster Id | `string` | n/a | yes |
 | <a name="input_iam_role_path"></a> [iam\_role\_path](#input\_iam\_role\_path) | IAM Role path | `string` | `"/"` | no |
 | <a name="input_irsa_iam_policies"></a> [irsa\_iam\_policies](#input\_irsa\_iam\_policies) | IAM Policies for IRSA IAM role | `list(string)` | n/a | yes |
