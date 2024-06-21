@@ -44,3 +44,9 @@ variable "irsa_iam_policies" {
   type        = list(string)
   description = "IAM Policies for IRSA IAM role"
 }
+
+variable "deploy_helm_chart" {
+  type        = bool
+  default     = true
+  description = "Determines if a Helm chart should be deployed for the add-on."
+}

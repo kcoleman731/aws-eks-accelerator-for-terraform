@@ -8,7 +8,7 @@ locals {
     chart                      = "agones"
     repository                 = "https://agones.dev/chart/stable"
     version                    = "1.18.0"
-    namespace                  = "agones-system"
+    namespace                  = "agones"
     timeout                    = "1200"
     create_namespace           = true
     description                = "Agones Gaming Server Helm Chart deployment configuration"
